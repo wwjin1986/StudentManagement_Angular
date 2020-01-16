@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  getAllCourses() {
+  getAllCourses(): void {
     this.courseService.getCourseInfo().subscribe(curDto => {
       if (!curDto) {
         this.courses = [];
@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  getAllCoursesWithTN() {
+  getAllCoursesWithTN(): void {
     this.courseService.getCourseInfoWithTN().subscribe(curDto => {
       if (!curDto) {
         this.coursesWithTN = [];
@@ -60,12 +60,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  clearAllCourses() {
+  clearAllCourses(): void {
     this.courses = [];
   }
 
-  addCourseToStudent() {
-    const courseName = 'temp';
-    this.courseService.addCourseToStudent(courseName);
+  clearAllCoursesWithTN(): void {
+    this.coursesWithTN = [];
+  }
+
+  addCourseToStudent(courseName: String): void {
+    this.courseService.addCourseToStudent(courseName).subscribe(data => global.console.log(courseName + 'added to student'));
+  }
+  registerCourse(courseName: String): void {
+    this.courseService.register(courseName).subscribe(data => global.console.log(data));
+  }
+
+  deleteCourse(courseName: String): void {
+    this.courseService.delete(courseName).subscribe(data => global.console.log('success'));
   }
 }

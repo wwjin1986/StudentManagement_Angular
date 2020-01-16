@@ -90,9 +90,10 @@ public class CourseController {
         }
     }
 
-    @DeleteMapping(path = "/api/course/deleteCourse/{courseName}", produces = "application/js")
+    @DeleteMapping(path = "/api/course/deleteCourse/{courseName}", produces = "application/json")
     public HttpStatus deleteCourse(@NotNull @PathVariable("courseName") String courseName) {
         try {
+            System.out.println("delete called");
             courseService.deleteCourse(courseName);
             return HttpStatus.OK;
         } catch (Exception e) {
@@ -100,7 +101,7 @@ public class CourseController {
         }
     }
 
-    @PostMapping(path = "/api/course/addCourseToStudent/{courseName}", produces = "application/js")
+    @PostMapping(path = "/api/course/addCourseToStudent/{courseName}", produces = "application/json")
     public HttpStatus addCourseToStudent(@NotNull @PathVariable("courseName") UserCourse userCourse) {
         try {
             courseService.addCourseToStudent(userCourse);
